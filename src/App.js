@@ -1,55 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import LoginPage from './Containers/LoginPage'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Main from './Containers/Main';
 
 function App() {
 
-  handleLogin = (info) => {
-    console.log('login')
-    this.handleAuthFetch(info, 'http://localhost:3000/login' )
-  }
-
-  handleSignup = (info) => {
-    console.log('sign up')
-    this.handleAuthFetch(info, 'http://localhost:3000/users')
-  }
-
-  handleAuthFetch = (info, request) => {
-    fetch(request, {
-      method: 'POST',
-      headers: {
-        'Content-Type': "application/json"
-      },
-      body: JSON.stringify({
-        name: info.name,
-        password: info.password
-      })
-    })
-    .then(resp => resp.json())
-    .then(data => {
-      this.setState({user: data.user, token: data.token}, () => {
-        this.props.history.push('/')
-      })
-
-    })
-  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Container className="App d-flex flex-column align-items-center">
+        {localStorage.token ? null : <Redirect to='/login'/> }
+        <Route exact path='/login' component={LoginPage}/>
+        <Route exact path='/' component={Main}/>
+      </Container>
+    </Router>
   );
 }
 
 export default App;
+
+//authorization for fetch requests - grab token from state and, in headers, write: 
+// ... headers: {
+//   'Content-Type': 'application/json',
+//   'Authorization' : `Bearer ${token}`
+// }
+// and I'm getting the token from localStorage
