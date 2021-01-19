@@ -39,13 +39,18 @@ class LoginPage extends Component {
         .then(data => {
             this.props.loginUser(data.user)
             localStorage.setItem('token', data.token)
+
+            if (localStorage.getItem('token') !== "undefined") {
+                this.props.history.push('/')
+            } else {
+                alert(data.error)
+                this.props.history.push('/login')
+            }
         
-              this.setState({user: data.user}, () => {
-            this.props.history.push('/')
+            //   this.setState({user: data.user}, () => {
+            // this.props.history.push('/')
           })
-    
-        })
-      }
+        }
 
       handleSignupFetch = (info, request) => {
         fetch(request, {
@@ -61,17 +66,10 @@ class LoginPage extends Component {
           })
         })
         .then(resp => resp.json())
-        .then(data => {
-            // debugger
-            // need to make sure shit got through to my database wow it actually did - could be a problem with float in future
-            
+        .then(data => {     
             this.props.createUser(data.user)
             localStorage.setItem('token', data.token)
-        
-              this.setState({user: data.user}, () => {
             this.props.history.push('/')
-          })
-    
         })
       }
 

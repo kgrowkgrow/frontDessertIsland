@@ -3,6 +3,8 @@ import LoginPage from './Containers/LoginPage'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Main from './Containers/Main';
+import EditUser from './Components/EditUser';
+
 
 function App() {
 
@@ -12,6 +14,7 @@ function App() {
         {localStorage.token ? null : <Redirect to='/login'/> }
         <Route exact path='/login' component={LoginPage}/>
         <Route exact path='/' component={Main}/>
+        <Route exact path='/edit' component={EditUser}/>
       </Container>
     </Router>
   );

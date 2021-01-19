@@ -11,3 +11,10 @@ export const createUser = (user = {}) => {
         user
     }
 }
+
+export const editUser = (user = {}) => {
+    return {
+        type: 'EDIT_USER',
+        user
+    }
+}

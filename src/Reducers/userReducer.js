@@ -1,14 +1,25 @@
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'LOGIN_USER':
-        return {...state, name: action.user.name} // what should this line be doing? 
+        return {...state, user: {
+            name: action.user.name,
+            diabetic: action.user.diabetic,
+            carb_ratio: action.user.carb_ratio
+        }} // what should this line be doing? 
 
         case 'CREATE_USER':
-        return {...state, 
-        name: action.user.name,
-        isDiabetic: action.user.diabetic,
-        carbsPerUnit: action.user.ratio
-        }
+        return {...state, user: {
+            name: action.user.name,
+            diabetic: action.user.diabetic,
+            carb_ratio: action.user.carb_ratio
+        }}
+
+        case 'EDIT_USER':
+        return {...state, user: {
+            name: action.user.name,
+            diabetic: action.user.diabetic,
+            carb_ratio: action.user.carb_ratio
+        }}
 
         default:
         return state
@@ -16,9 +27,15 @@ const userReducer = (state = initialState, action) => {
 }
 
 const initialState = {
-    name: "",
-    isDiabetic: null, 
-    carbsPerUnit: null,
+    user: {
+        name: "",
+        diabetic: null,
+        carb_ratio: null
+    }
 }
 
 export default userReducer
+
+// what's in the store right now? probably should have:
+// user, recipes, favorites(eventually), and comments(maybe not)
+// but right now just the user ok?
