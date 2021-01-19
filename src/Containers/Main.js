@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import LoginPage from './LoginPage';
-import Header from '../Components/Header';
 import Container from 'react-bootstrap/Container';
+import {connect} from 'react-redux'
+import SearchBar from '../Components/SearchBar';
 
 
 class Main extends Component {
@@ -9,13 +9,18 @@ class Main extends Component {
     render() {
         return (
             <div>
-                <Container>
-                    <Header/>   
-                    Main 
+                <Container> 
+                     {/* <FeaturedRecipe/> stretchy goal */}
+                     <SearchBar/>
                 </Container>
             </div>
         );
     }
 }
 
-export default Main;
+function mapStateToProps(state) {
+    const {user} = state
+    return {user: user}
+}
+
+export default connect(mapStateToProps) (Main);

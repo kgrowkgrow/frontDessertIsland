@@ -18,3 +18,16 @@ export const editUser = (user = {}) => {
         user
     }
 }
+
+export const logoutUser = () => {
+    return {
+        type: 'LOGOUT_USER'
+    }
+}
+
+export const deleteUser = (user = {}) => {
+    return {
+        type: 'DELETE_USER',
+        user
+    }
+}

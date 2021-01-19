@@ -21,6 +21,13 @@ const userReducer = (state = initialState, action) => {
             carb_ratio: action.user.carb_ratio
         }}
 
+        case 'LOGOUT_USER':
+            return {...state, user: {
+                name: "",
+                diabetic: null,
+                carb_ratio: null
+            }}
+
         default:
         return state
     }

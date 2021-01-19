@@ -41,14 +41,12 @@ class LoginPage extends Component {
             localStorage.setItem('token', data.token)
 
             if (localStorage.getItem('token') !== "undefined") {
+              this.setState({user: data.user})
                 this.props.history.push('/')
             } else {
                 alert(data.error)
                 this.props.history.push('/login')
             }
-        
-            //   this.setState({user: data.user}, () => {
-            // this.props.history.push('/')
           })
         }
 

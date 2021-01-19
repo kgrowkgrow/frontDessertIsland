@@ -3,9 +3,9 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import {connect} from 'react-redux'
 import {editUser} from '../Actions/user'
+import {logoutUser} from '../Actions/user';
 
 const EditUser = (props) => {
-    // set user state to what's what
 
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -57,10 +57,30 @@ const EditUser = (props) => {
         })
         .then(resp => resp.json())
         .then(data => {
-            // debugger
-            // let editFunction = props.editUser
             props.editUser(data.user)
+            props.history.push('/')
+
         })
+      }
+
+      const handleDelete = () => {
+        let result = window.confirm('Are you sure you want to delete your account?')
+        
+        let token = localStorage.getItem('token')
+        if (result) {
+            fetch('http://localhost:3000/delete', {
+            method: 'DELETE', 
+            headers: {'Content-Type': "application/json",
+            'Authorization' : `Bearer ${token}`}})
+            .then(resp => resp.json())
+            .then(data => {
+                console.log('inside handle delete:', data)
+                props.logoutUser()
+                localStorage.clear()
+                props.history.push('/login')
+            })
+
+        }
       }
 
     return (
@@ -89,6 +109,10 @@ const EditUser = (props) => {
                 <Button className='signup-button' variant="primary" type="submit">
                     Submit
                 </Button>
+
+                <Button className='delete-button' variant="danger" onClick={handleDelete}>
+                    Delete Account
+                </Button>
             </Form> 
         </div>
     );
@@ -100,7 +124,8 @@ const EditUser = (props) => {
 
     const mapDispatchToProps = (dispatch) => {
         return {
-            editUser: editUser
+            editUser: (user) => dispatch(editUser(user)),
+            logoutUser: () => dispatch(logoutUser())
         }
     }
 

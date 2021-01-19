@@ -4,13 +4,13 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Main from './Containers/Main';
 import EditUser from './Components/EditUser';
-
-
+import SiteNavbar from './Components/SiteNavbar';
 function App() {
 
   return (
     <Router>
       <Container className="App d-flex flex-column align-items-center">
+        <SiteNavbar/>
         {localStorage.token ? null : <Redirect to='/login'/> }
         <Route exact path='/login' component={LoginPage}/>
         <Route exact path='/' component={Main}/>
