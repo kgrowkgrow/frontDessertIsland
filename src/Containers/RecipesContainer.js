@@ -15,6 +15,7 @@ class RecipesContainer extends Component {
             return <RecipeCard
             name={recipe.name}
             key={recipe.id}
+            id={recipe.id}
             imageUrl={recipe.image_url}
             summary={recipe.summary}
             style={{flex: 1}}

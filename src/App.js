@@ -9,11 +9,14 @@ import RecipesContainer from './Containers/RecipesContainer';
 import SiteNavbar from './Components/SiteNavbar';
 import {connect} from 'react-redux';
 import {addRecipesToState} from './Actions/recipes';
+import RecipeShowContainer from './Containers/RecipeShowContainer';    
 
-function App({addRecipesToState}) {
+function App({user, addRecipesToState}) {
 
   useEffect(() => {
-    fetchRecipes()
+    if (!user.name && localStorage.getItem('token')) {
+      fetchRecipes()
+    }
   },[])
 
   const fetchRecipes = () => {
@@ -37,16 +40,21 @@ function App({addRecipesToState}) {
 
   return (
     <Router>
-      <Container className="App d-flex flex-column align-items-center">
+      <div className="App d-flex flex-column align-items-center">
         <SiteNavbar/>
         {localStorage.token ? null : <Redirect to='/login'/> }
         <Route exact path='/login' component={LoginPage}/>
         <Route exact path='/' component={Main}/>
         <Route exact path='/edit' component={EditUser}/>
         <Route exact path='/recipes' component={RecipesContainer}/>
-      </Container>
+        <Route path='/recipes/:name' component={RecipeShowContainer}/>
+      </div>
     </Router>
   );
+}
+
+const mapStateToProps = (state) => {
+  return {user: state.user}
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -55,5 +63,5 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps) (App);
+export default connect(mapStateToProps, mapDispatchToProps) (App);
 

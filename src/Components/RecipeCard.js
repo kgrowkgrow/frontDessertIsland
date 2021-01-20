@@ -2,9 +2,20 @@ import React from 'react';
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import parse from 'html-react-parser'
+import { useHistory } from "react-router-dom";
+
 
 
 const RecipeCard = ({name, imageUrl, summary, id}) => {
+
+    const history = useHistory()
+
+    const goToCardRecipe = (id) => {
+        history.push({
+            pathname: `/recipes/${name}`,
+            state: { name: name }
+        })
+    }
 
     return (
         <div className='recipe-card'>
@@ -16,7 +27,7 @@ const RecipeCard = ({name, imageUrl, summary, id}) => {
                     {parse(summary)}
                 </Card.Text>
                 
-                <Button variant="primary">See Recipe</Button>
+                <Button variant="primary" onClick={() => goToCardRecipe(id)}>See Recipe</Button>
             </Card.Body>
             </Card>
             <br/>

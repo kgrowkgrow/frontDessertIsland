@@ -4,8 +4,8 @@ import LoginForm from '../Auth/LoginForm';
 import SignupForm from '../Auth/SignupForm';
 import {loginUser} from '../Actions/user';
 import {createUser} from '../Actions/user'
+import {addRecipesToState} from '../Actions/recipes';
 // import actions for mapDispatchToProps
-
 
 class LoginPage extends Component {
 
@@ -13,10 +13,30 @@ class LoginPage extends Component {
         user:"",
         whichForm: "login"
     }
+    
+    configRecipeObj = () => {
+      let token = localStorage.getItem('token')
+      return {
+        method: 'GET',
+        headers: {
+          'Content-Type': "application/json",
+          'Authorization' : `Bearer ${token}`
+        }
+      }
+    } 
+
+    fetchRecipes = () => {
+      fetch('http://localhost:3000/recipes', this.configRecipeObj)
+      .then(resp => resp.json())
+      .then(data => {
+        this.props.addRecipesToState(data)
+      })
+    }
 
     handleLogin = (info) => {
         console.log('login')
         this.handleLoginFetch(info, 'http://localhost:3000/login' )
+        this.fetchRecipes()
       }
     
       handleSignup = (info) => {
@@ -102,4 +122,4 @@ class LoginPage extends Component {
 
 }
 
-export default connect(null, {loginUser, createUser}) (LoginPage);
+export default connect(null, {loginUser, createUser, addRecipesToState}) (LoginPage);
