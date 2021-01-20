@@ -1,11 +1,39 @@
 import './App.css';
+import {useEffect} from 'react'
 import LoginPage from './Containers/LoginPage'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Main from './Containers/Main';
 import EditUser from './Components/EditUser';
+import RecipesContainer from './Containers/RecipesContainer';
 import SiteNavbar from './Components/SiteNavbar';
-function App() {
+import {connect} from 'react-redux';
+import {addRecipesToState} from './Actions/recipes';
+
+function App({addRecipesToState}) {
+
+  useEffect(() => {
+    fetchRecipes()
+  },[])
+
+  const fetchRecipes = () => {
+    fetch('http://localhost:3000/recipes', configRecipeObj)
+    .then(resp => resp.json())
+    .then(data => {
+      addRecipesToState(data)
+    })
+  }
+
+  const configRecipeObj = () => {
+    let token = localStorage.getItem('token')
+    return {
+      method: 'GET',
+      headers: {
+        'Content-Type': "application/json",
+        'Authorization' : `Bearer ${token}`
+      }
+    }
+  }
 
   return (
     <Router>
@@ -15,16 +43,17 @@ function App() {
         <Route exact path='/login' component={LoginPage}/>
         <Route exact path='/' component={Main}/>
         <Route exact path='/edit' component={EditUser}/>
+        <Route exact path='/recipes' component={RecipesContainer}/>
       </Container>
     </Router>
   );
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addRecipesToState: (recipes) => dispatch(addRecipesToState(recipes))
+  }
+}
 
-//authorization for fetch requests - grab token from state and, in headers, write: 
-// ... headers: {
-//   'Content-Type': 'application/json',
-//   'Authorization' : `Bearer ${token}`
-// }
-// and I'm getting the token from localStorage
+export default connect(null, mapDispatchToProps) (App);
+

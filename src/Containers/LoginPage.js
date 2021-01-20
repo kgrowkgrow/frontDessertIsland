@@ -71,15 +71,12 @@ class LoginPage extends Component {
         })
       }
 
-
-
       handleSignupClick = () => {
-          this.setState((prevState) => { // this should change page state to signup
+          this.setState((prevState) => {
               return {...prevState, whichForm: 'signup'}
           })
       }
 
-      // ternary that loads login or signup depending on form type state
     render() {
         return (
             <div>

@@ -1,9 +1,16 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { useHistory } from "react-router-dom";
  
 
-const SearchBar = () => {
+const SearchBar = (props) => {
+    const history = useHistory()
+
+    const goToRecipeIndex = () => {
+        history.push('/recipes')
+    }
+
     return (
         <div>
             <Form>
@@ -22,12 +29,8 @@ const SearchBar = () => {
 
             <br/>
             <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
 
-            <Button variant="primary" size="lg" block>
+            <Button variant="primary" size="lg" block onClick={goToRecipeIndex}>
                 See all recipes!
             </Button>
         </div>

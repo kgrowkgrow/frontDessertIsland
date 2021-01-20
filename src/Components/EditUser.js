@@ -79,7 +79,6 @@ const EditUser = (props) => {
                 localStorage.clear()
                 props.history.push('/login')
             })
-
         }
       }
 
