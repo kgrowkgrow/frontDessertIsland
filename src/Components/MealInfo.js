@@ -15,7 +15,7 @@ const MealInfo = (props) => {
                <p>Ready in {ready_in_minutes} minutes</p> 
                <p>{calories} calories</p> 
                <p>{net_carbs} net carbs</p> 
-               {diabetic ? <p>Recommended doses of insulin: {Math.round(net_carbs/carb_ratio)} units</p> : null}
+               {diabetic ? <p>Recommended dose of insulin: <b>{Math.round(net_carbs/carb_ratio)}</b> units</p> : null}
             
         </div>
     );

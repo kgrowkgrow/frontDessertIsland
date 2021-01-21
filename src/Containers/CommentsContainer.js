@@ -1,10 +1,9 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import Comment from '../Components/Comment';
 import CommentForm from "../Components/CommentForm";
 
-const CommentsContainer = ({comments, recipeId}) => {
-
-    
+const CommentsContainer = ({comments, recipeId, addNewComment}) => {
 
     const renderComments = () => {
         return comments.map(comment => {
@@ -22,4 +21,10 @@ const CommentsContainer = ({comments, recipeId}) => {
     );
 }
 
-export default CommentsContainer;
+const mapStateToProps = state => {
+    return {
+        comments: state.comments
+    }
+}
+
+export default connect(mapStateToProps) (CommentsContainer);

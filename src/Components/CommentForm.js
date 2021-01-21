@@ -3,8 +3,9 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import {connect} from 'react-redux';
+import {addNewComment} from '../Actions/comments';
 
-const CommentForm = ({recipeId, user}) => {
+const CommentForm = ({recipeId, user, addNewComment}) => {
 
     const [comment, setComment] = useState("");
 
@@ -23,19 +24,18 @@ const CommentForm = ({recipeId, user}) => {
             body: JSON.stringify({
                 recipe_id: recipeId, 
                 content: comment
-                // user_id we can take from token!
             })
         })
         .then(resp => resp.json())
         .then(data => {
-            console.log(data) // 
+            console.log(data) 
+            addNewComment(data)
         })
     }
 
-
     return (
         <div>
-            <label>New Comment</label>
+            <label><b>Post New Comment</b></label>
             <InputGroup>
                 <FormControl as="textarea" aria-label="With textarea" onChange={handleCommentChange}/>
                 <InputGroup.Append>
@@ -50,4 +50,10 @@ const mapStateToProps = (state) => {
     return {user: state.user.user }
 }
 
-export default connect(mapStateToProps) (CommentForm);
+const mapDispatchToProps = dispatch => {
+    return {
+        addNewComment: (comment) => dispatch(addNewComment(comment))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (CommentForm);

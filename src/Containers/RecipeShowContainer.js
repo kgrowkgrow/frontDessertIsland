@@ -5,11 +5,11 @@ import MealInfo from '../Components/MealInfo';
 import RecipeInstructions from "./RecipeInstructions";
 import CommentsContainer from './CommentsContainer';
 import Container from 'react-bootstrap/Container';
+import {setInitialComments} from '../Actions/comments';
 
 
 const RecipeShowContainer = (props) => {
 
-    
     const [ingredients, setIngredients] = useState(null)
     const [comments, setComments] = useState(null)
 
@@ -37,13 +37,12 @@ const RecipeShowContainer = (props) => {
         })
         .then(resp => resp.json())
         .then(data => {
- 
             if (ingredients === null) {
                 setIngredients(data.ingredients)
             }
             if (comments === null) {
-                console.log('setting comments')
                 setComments(data.comments)
+                props.setInitialComments(data.comments)
             }
         })
     }
@@ -53,7 +52,7 @@ const RecipeShowContainer = (props) => {
             <RecipeShowPic imgUrl={image_url} name={name}/>
             <MealInfo recipe={singleRecipeArr[0]}/>
             <RecipeInstructions instructions={instructions} ingredients={ingredients}/>
-            {comments !== null ? <CommentsContainer  comments={comments} recipeId={id}/> : null}
+            {comments !== null ? <CommentsContainer recipeId={id}/> : null}
             
             
         </div>
@@ -61,7 +60,16 @@ const RecipeShowContainer = (props) => {
 }
 
 const mapStateToProps = state => {
-    return {recipes: state.recipes}
+    return {
+        recipes: state.recipes,
+        comments: state.comments
+    }
 }
 
-export default connect(mapStateToProps) (RecipeShowContainer);
+const mapDispatchToProps = dispatch => {
+    return {
+        setInitialComments: (comments) => dispatch(setInitialComments(comments))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (RecipeShowContainer);
