@@ -99,7 +99,7 @@ class LoginPage extends Component {
 
     render() {
         return (
-            <div>
+            <div id="login">
                 {this.state.whichForm === "login" ? 
                 <LoginForm 
                 handleAuthFetch={this.handleAuthFetch} 

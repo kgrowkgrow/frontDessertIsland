@@ -4,7 +4,6 @@ import  RecipeShowPic  from "../Components/RecipeShowPic";
 import MealInfo from '../Components/MealInfo';
 import RecipeInstructions from "./RecipeInstructions";
 import CommentsContainer from './CommentsContainer';
-import Container from 'react-bootstrap/Container';
 import {setInitialComments} from '../Actions/comments';
 
 

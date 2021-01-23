@@ -40,15 +40,15 @@ function App({user, addRecipesToState}) {
 
   return (
     <Router>
-      <div className="App d-flex flex-column align-items-center">
-        <SiteNavbar/>
-        {localStorage.token ? null : <Redirect to='/login'/> }
-        <Route exact path='/login' component={LoginPage}/>
-        <Route exact path='/' component={Main}/>
-        <Route exact path='/edit' component={EditUser}/>
-        <Route exact path='/recipes' component={RecipesContainer}/>
-        <Route path='/recipes/:name' component={RecipeShowContainer}/>
-      </div>
+        <div id="app-container" >
+          <SiteNavbar/>
+          {localStorage.token ? null : <Redirect to='/login'/> }
+          <Route exact path='/login' component={LoginPage}/>
+          <Route exact path='/' component={Main}/>
+          <Route exact path='/edit' component={EditUser}/>
+          <Route exact path='/recipes' component={RecipesContainer}/>
+          <Route path='/recipes/:name' component={RecipeShowContainer}/>
+        </div>
     </Router>
   );
 }
