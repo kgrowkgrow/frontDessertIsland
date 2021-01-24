@@ -9,7 +9,8 @@
 }
 
 #app-container {
-  height: 100%
+  height: 100%;
+  padding-top: 56px;
 }
 
 html, body, #app, #app>div, body>#root, body>#root>#app-container {
@@ -34,3 +35,37 @@ html, body, #app, #app>div, body>#root, body>#root>#app-container {
 .full-width {
   width: 100%
 }
+
+.recipe-card {
+  padding: 10px;
+  
+}
+
+/* .hover11 figure img {
+	opacity: 1;
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.hover11 figure:hover img {
+	opacity: .5;
+} */
+
+.recipe-index-img {
+  opacity: 1;
+  -webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+.recipe-index-img:hover {
+  opacity: .5;
+}
+
+.recipe-index-button {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+}
+
+/* .index-button-div {
+  position: absolute
+} */

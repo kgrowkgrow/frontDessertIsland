@@ -40,8 +40,8 @@ function App({user, addRecipesToState}) {
 
   return (
     <Router>
+        <SiteNavbar/>
         <div id="app-container" >
-          <SiteNavbar/>
           {localStorage.token ? null : <Redirect to='/login'/> }
           <Route exact path='/login' component={LoginPage}/>
           <Route exact path='/' component={Main}/>

@@ -1,6 +1,5 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
+import {Button, Container, Row, Col, Image} from 'react-bootstrap';
 import parse from 'html-react-parser'
 import { useHistory } from "react-router-dom";
 
@@ -18,20 +17,25 @@ const RecipeCard = ({name, imageUrl, summary, id}) => {
     }
 
     return (
-        <div className='recipe-card'>
-            <Card style={{ width: '23rem' }}>
-            <Card.Img variant="top" src={imageUrl}  />
-            <Card.Body>
-                <Card.Title>{name}</Card.Title>
-                <Card.Text>
-                    {parse(summary)}
-                </Card.Text>
-                
-                <Button variant="primary" onClick={() => goToCardRecipe(id)}>See Recipe</Button>
-            </Card.Body>
-            </Card>
-            <br/>
-        </div>
+                <Container fluid className="recipe-card" >
+                    <Row>
+                        <Col xs={4}>
+                            <span>
+                                {name}
+                            </span>
+                            <br/> 
+                            <Image className="recipe-index-img" src={imageUrl} alt="" rounded fluid/>       
+                        </Col>
+                        <Col xs={8}>
+                            <span>{parse(summary)}</span>
+                            {/* <div className='index-button-div'> */}
+                                <Button className='recipe-index-button' variant="primary" onClick={() => goToCardRecipe(id)}>See Recipe</Button> 
+                            {/* </div> */}
+                        </Col>
+                    </Row>
+                    <hr/>
+                </Container>
+                   
     );
 }
 

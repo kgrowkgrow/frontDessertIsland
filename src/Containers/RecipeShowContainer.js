@@ -5,6 +5,7 @@ import MealInfo from '../Components/MealInfo';
 import RecipeInstructions from "./RecipeInstructions";
 import CommentsContainer from './CommentsContainer';
 import {setInitialComments} from '../Actions/comments';
+import {Container, Row, Col} from 'react-bootstrap';
 
 
 const RecipeShowContainer = (props) => {
