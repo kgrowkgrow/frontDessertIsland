@@ -5,7 +5,7 @@ const RecipeShowPic = ({imgUrl, name}) => {
     return (
         <div>
             <h3>{name}</h3>
-            <Image src={imgUrl} rounded />
+            <Image src={imgUrl} rounded fluid/>
         </div>
     );
 }

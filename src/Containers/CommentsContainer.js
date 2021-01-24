@@ -7,7 +7,7 @@ const CommentsContainer = ({comments, recipeId, addNewComment}) => {
 
     const renderComments = () => {
         return comments.map(comment => {
-            return <Comment comment={comment} key={comment.id}/>
+            return <Comment comment={comment} key={comment.id}/> 
         })
     }
 

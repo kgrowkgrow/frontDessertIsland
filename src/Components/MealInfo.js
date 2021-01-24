@@ -10,13 +10,13 @@ const MealInfo = (props) => {
     return (
         <div>
             <h5>Dessert Info:</h5>
-           
+            <span>
                <p>Makes {serving_size} servings</p> 
                <p>Ready in {ready_in_minutes} minutes</p> 
                <p>{calories} calories</p> 
                <p>{net_carbs} net carbs</p> 
                {diabetic ? <p>Recommended dose of insulin: <b>{Math.round(net_carbs/carb_ratio)}</b> units</p> : null}
-            
+            </span>
         </div>
     );
 }

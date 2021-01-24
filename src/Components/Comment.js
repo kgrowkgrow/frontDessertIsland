@@ -3,7 +3,8 @@ import React from 'react';
 const Comment = ({comment}) => {
     return (
         <div>
-            {comment.content}
+            <span>{comment.content}</span>
+            <hr/>
         </div>
     );
 }

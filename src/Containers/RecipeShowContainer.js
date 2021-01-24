@@ -6,6 +6,7 @@ import RecipeInstructions from "./RecipeInstructions";
 import CommentsContainer from './CommentsContainer';
 import {setInitialComments} from '../Actions/comments';
 import {Container, Row, Col} from 'react-bootstrap';
+import Ingredients from '../Components/Ingredients';
 
 
 const RecipeShowContainer = (props) => {
@@ -48,14 +49,43 @@ const RecipeShowContainer = (props) => {
     }
 
     return (
-        <div>
-            <RecipeShowPic imgUrl={image_url} name={name}/>
-            <MealInfo recipe={singleRecipeArr[0]}/>
-            <RecipeInstructions instructions={instructions} ingredients={ingredients}/>
-            {comments !== null ? <CommentsContainer recipeId={id}/> : null}
-            
-            
-        </div>
+        <Container className="full-height" fluid>
+            <Row className="full-height">
+                <Col className="recipe-show-column">
+                    <Row className="recipe-show-pic"> 
+                        <RecipeShowPic imgUrl={image_url} name={name}/> 
+                    </Row>  
+                    <hr/> 
+
+                    <Row className="recipe-info">
+                        <MealInfo recipe={singleRecipeArr[0]}/> 
+                    </Row>   
+                </Col>
+
+                <Col className="recipe-ingredients">
+                    <Ingredients ingredients={ingredients}/>
+                </Col>
+
+                <Col className="recipe-directions">
+                    <RecipeInstructions instructions={instructions} ingredients={ingredients}/>
+                </Col>        
+            </Row> 
+
+            <Row>
+                <Container className="comments-container">   
+                    <Row className="comment">
+                        {comments !== null ? <CommentsContainer recipeId={id}/> : null} 
+                    </Row>
+                </Container>
+            </Row>
+        </Container>
+           
+            // <RecipeShowPic imgUrl={image_url} name={name}/>
+            // <MealInfo recipe={singleRecipeArr[0]}/>
+            // <RecipeInstructions instructions={instructions} ingredients={ingredients}/>
+            // {comments !== null ? <CommentsContainer recipeId={id}/> : null} 
+                 
+       
     );
 }
 
