@@ -1,40 +1,40 @@
-import React from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import React, { useState } from 'react';
+import {Button, InputGroup, FormControl} from 'react-bootstrap';
+import {connect} from 'react-redux';
 import { useHistory } from "react-router-dom";
+
  
 
-const SearchBar = (props) => {
-    const history = useHistory()
+const SearchBar = ({recipes}) => {
 
-    const goToRecipeIndex = () => {
-        history.push('/recipes')
+    const history = useHistory()
+    const [search, setSearch] = useState("")
+
+    const handleSearch = () => {
+        let searchedRecipes = recipes.filter(recipe => recipe.name.includes(search))
+        console.log(searchedRecipes)
+        
+    }
+
+    const handleSearchChange = (event) => {
+        setSearch(event.target.value)
     }
 
     return (
-        <div>
-            <Form>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Search</Form.Label>
-                    <Form.Control type="email" placeholder="e.g. chocolate cake" />
-                    <Form.Text className="text-muted">
-                    Enter search terms here
-                    </Form.Text>
-                    <Button variant="primary" type="submit">
-                        Search
-                    </Button>
-                </Form.Group>
-
-            </Form>
-
-            <br/>
-            <br/>
-
-            <Button variant="primary" size="lg" block onClick={goToRecipeIndex}>
-                See all recipes!
-            </Button>
-        </div>
+        <InputGroup className="mb-3">
+            <FormControl
+            placeholder="Search desserts"
+            onChange={handleSearchChange}
+            />
+            <InputGroup.Append>
+            <Button variant="outline-primary" onClick={handleSearch}>Search</Button>
+            </InputGroup.Append>
+        </InputGroup> 
     );
 }
 
-export default SearchBar;
+const mapStateToProps = (state) => {
+    return {recipes: state.recipes}
+  }
+
+export default connect(mapStateToProps) (SearchBar);

@@ -9,6 +9,5 @@ const Comment = ({comment}) => {
     );
 }
 
-// how we gonna do likes? i guess just a button and some info on the side here
 
 export default Comment;

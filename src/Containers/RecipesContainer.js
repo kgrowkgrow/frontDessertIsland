@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import RecipeCard from '../Components/RecipeCard';
-import CardDeck from 'react-bootstrap/CardDeck'
-
 
 class RecipesContainer extends Component {
 
@@ -25,11 +23,8 @@ class RecipesContainer extends Component {
 
     render() {
         return (
-            // probably will do css on this div
             <div> 
-                <CardDeck style={{display: 'flex', flexDirection: 'column'}}>
-                    {this.populateRecipeCards()} 
-                </CardDeck>
+                {this.populateRecipeCards()} 
             </div>
         );
     }

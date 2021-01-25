@@ -8,7 +8,7 @@ const MealInfo = (props) => {
     const {diabetic, carb_ratio} = props.user 
     
     return (
-        <div>
+        <div className="meal-info-div">
             <h5>Dessert Info:</h5>
             <span>
                <p>Makes {serving_size} servings</p> 

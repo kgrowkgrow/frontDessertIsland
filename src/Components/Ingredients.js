@@ -2,18 +2,20 @@ import React from 'react';
 
 const Ingredients = ({ingredients}) => {
 
+    const capitalize = (str) => {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
     const populateIngredients = () => {
         return ingredients.map(ingredient => {
-            return <li key={ingredient.name}> {ingredient.name}: {ingredient.amount}{ingredient.unit}</li>
+            return <p key={ingredient.name}> {capitalize(ingredient.name)}: {Math.round(ingredient.amount * 10) / 10} {ingredient.unit}</p>
         })
     }
 
     return (
         <div>
             <h4>Ingredients:</h4>
-            <ul>
-                {ingredients ? populateIngredients() : null}
-            </ul>
+                {ingredients ? populateIngredients() : null}      
         </div>
     );
 }

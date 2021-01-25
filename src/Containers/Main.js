@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
-import Container from 'react-bootstrap/Container';
 import {connect} from 'react-redux'
 import SearchBar from '../Components/SearchBar';
+import {Container, Button, Row, Col} from 'react-bootstrap';
 
 
 class Main extends Component {
 
+    goToRecipeIndex = () => {
+        console.log(this.props)
+        this.props.history.push('/recipes')
+    }
+
     render() {
         return (
-            <div>
-                <Container> 
+                <Container fluid className="main-container full-height"> 
+                <Row>
+                    <Col></Col>
+                    <Col xs={6}>
+                        <SearchBar/>
+                        <Button variant="primary" size="lg" block onClick={this.goToRecipeIndex}>
+                            See all recipes!
+                        </Button>
+                    </Col>
+                    <Col></Col>
+                </Row>
                      {/* <FeaturedRecipe/> stretchy goal */}
-                     <SearchBar/>
                 </Container>
-            </div>
         );
     }
 }

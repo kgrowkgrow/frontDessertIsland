@@ -12,7 +12,7 @@ const CommentsContainer = ({comments, recipeId, addNewComment}) => {
     }
 
     return (
-        <div>
+        <div className="full-width">
             <h4><b>Comments</b></h4>
             {renderComments()}
             <CommentForm recipeId={recipeId}/>

@@ -34,14 +34,15 @@ const CommentForm = ({recipeId, user, addNewComment}) => {
     }
 
     return (
-        <div>
+        <div className="full-width">
             <label><b>Post New Comment</b></label>
-            <InputGroup>
+            <InputGroup >
                 <FormControl as="textarea" aria-label="With textarea" onChange={handleCommentChange}/>
-                <InputGroup.Append>
-                    <Button variant="info outline-secondary" onClick={postComment}>Post Comment</Button>
-                </InputGroup.Append>
+                {/* <InputGroup.Append> 
+                    <Button variant="info" onClick={postComment}>Post Comment</Button> 
+                 </InputGroup.Append> */}
             </InputGroup>
+           <Button className="post-comment-button" variant="info" onClick={postComment}>Post Comment</Button>
         </div>
     );
 }

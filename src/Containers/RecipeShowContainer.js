@@ -70,7 +70,7 @@ const RecipeShowContainer = (props) => {
                     <RecipeInstructions instructions={instructions} ingredients={ingredients}/>
                 </Col>        
             </Row> 
-
+            <hr/>
             <Row>
                 <Container className="comments-container">   
                     <Row className="comment">
