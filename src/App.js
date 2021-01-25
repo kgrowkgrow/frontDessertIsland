@@ -10,6 +10,8 @@ import SiteNavbar from './Components/SiteNavbar';
 import {connect} from 'react-redux';
 import {addRecipesToState} from './Actions/recipes';
 import RecipeShowContainer from './Containers/RecipeShowContainer';    
+import SearchResultsContainer from './Containers/SearchResultsContainer';
+import NoSearchResults from './Components/NoSearchResults';
 
 function App({user, addRecipesToState}) {
 
@@ -47,6 +49,8 @@ function App({user, addRecipesToState}) {
           <Route exact path='/' component={Main}/>
           <Route exact path='/edit' component={EditUser}/>
           <Route exact path='/recipes' component={RecipesContainer}/>
+          <Route exact path='/search' component={SearchResultsContainer}/>
+          <Route exact path='/no-results' component={NoSearchResults}/>
           <Route path='/recipes/:name' component={RecipeShowContainer}/>
         </div>
     </Router>

@@ -2,18 +2,23 @@ import React, { useState } from 'react';
 import {Button, InputGroup, FormControl} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import { useHistory } from "react-router-dom";
+import { addSearchedRecipes } from '../Actions/search';
 
  
 
-const SearchBar = ({recipes}) => {
+const SearchBar = ({recipes, addSearchedRecipes}) => {
 
     const history = useHistory()
     const [search, setSearch] = useState("")
 
     const handleSearch = () => {
         let searchedRecipes = recipes.filter(recipe => recipe.name.includes(search))
-        console.log(searchedRecipes)
-        
+        if (searchedRecipes.length) {
+            addSearchedRecipes(searchedRecipes)
+            history.push('/search')
+        } else {
+            history.push('/no-results')
+        }
     }
 
     const handleSearchChange = (event) => {
@@ -33,8 +38,14 @@ const SearchBar = ({recipes}) => {
     );
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {recipes: state.recipes}
   }
 
-export default connect(mapStateToProps) (SearchBar);
+const mapDispatchToProps = dispatch => {
+    return {
+        addSearchedRecipes: (recipes) => dispatch(addSearchedRecipes(recipes))
+    }
+} 
+
+export default connect(mapStateToProps, mapDispatchToProps) (SearchBar);

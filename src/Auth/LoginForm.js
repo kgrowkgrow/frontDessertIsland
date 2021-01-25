@@ -42,7 +42,7 @@ const LoginForm = ({handleLogin, handleSignupClick}) => {
                                         <Form.Label>Password</Form.Label>
                                         <Form.Control type="password" placeholder="Password" onChange={handlePasswordChange} />
                                     </Form.Group>
-                                    <div style={{'align-items': 'center'}}>
+                                    <div >
                                         <Button variant="primary" type="submit" > 
                                             Login 
                                         </Button> {' '} 
