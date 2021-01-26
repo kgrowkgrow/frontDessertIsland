@@ -75,14 +75,14 @@ html, body, #app, #app>div, body>#root, body>#root>#app-container {
 }
 
 .recipe-show-pic {
-  height: 45%;
+  height: 50%;
   margin-left: -8px;
   /* background-color: indigo; */
 }
 
 
 .recipe-info {
-  height: 50%;
+  height: 35%;
   /* background-color: lightblue; */
 }
 
@@ -118,4 +118,8 @@ html, body, #app, #app>div, body>#root, body>#root>#app-container {
 .main-container {
   position: absolute;
   top: 40%;
+}
+
+.go-to-index-button {
+  
 }

@@ -42,6 +42,7 @@ class LoginPage extends Component {
       handleSignup = (info) => {
         console.log('sign up')
         this.handleSignupFetch(info, 'http://localhost:3000/users')
+        this.fetchRecipes()
       }
     
       handleLoginFetch = (info, request) => {

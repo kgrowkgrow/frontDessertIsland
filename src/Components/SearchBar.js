@@ -12,7 +12,8 @@ const SearchBar = ({recipes, addSearchedRecipes}) => {
     const [search, setSearch] = useState("")
 
     const handleSearch = () => {
-        let searchedRecipes = recipes.filter(recipe => recipe.name.includes(search))
+        let searchedRecipes = recipes.filter(recipe => recipe.name.toLowerCase().includes(search))
+        
         if (searchedRecipes.length) {
             addSearchedRecipes(searchedRecipes)
             history.push('/search')

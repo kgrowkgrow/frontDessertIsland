@@ -17,10 +17,16 @@ class Main extends Component {
                 <Row>
                     <Col></Col>
                     <Col xs={6}>
-                        <SearchBar/>
-                        <Button variant="primary" size="lg" block onClick={this.goToRecipeIndex}>
-                            See all recipes!
-                        </Button>
+                        <Row>
+                           <SearchBar/> 
+                        </Row>
+                        <Row>
+                            <Button className="go-to-index-button" variant="primary" size="lg" block onClick={this.goToRecipeIndex}>
+                                See all recipes!
+                            </Button>
+                        </Row>
+                        
+                       
                     </Col>
                     <Col></Col>
                 </Row>
