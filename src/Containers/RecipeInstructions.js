@@ -5,7 +5,7 @@ const RecipeInstructions = ({instructions}) => {
     return (
         <div>
           <h5>Instructions</h5>  
-            <p>{parse(instructions)}</p>
+            {parse(instructions)}
         </div>
     );
 }

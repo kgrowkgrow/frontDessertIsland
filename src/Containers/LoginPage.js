@@ -5,7 +5,7 @@ import SignupForm from '../Auth/SignupForm';
 import {loginUser} from '../Actions/user';
 import {createUser} from '../Actions/user'
 import {addRecipesToState} from '../Actions/recipes';
-// import actions for mapDispatchToProps
+import {addFavoritesToState} from '../Actions/favorites';
 
 class LoginPage extends Component {
 
@@ -30,6 +30,21 @@ class LoginPage extends Component {
       .then(resp => resp.json())
       .then(data => {
         this.props.addRecipesToState(data)
+      })
+    }
+
+    fetchFavorites = () => {
+      let token = localStorage.getItem('token')
+      fetch('http://localhost:3000/get-favorites', {
+        method: 'GET',
+        headers: {
+          'Content-Type': "application/json",
+          'Authorization' : `Bearer ${token}`
+        }
+      })
+      .then(resp => resp.json())
+      .then(data => {
+        this.props.addFavoritesToState(data)
       })
     }
 
@@ -60,6 +75,7 @@ class LoginPage extends Component {
         .then(data => {
             this.props.loginUser(data.user)
             localStorage.setItem('token', data.token)
+            this.fetchFavorites()
 
             if (localStorage.getItem('token') !== "undefined") {
               this.setState({user: data.user})
@@ -123,4 +139,4 @@ class LoginPage extends Component {
 
 }
 
-export default connect(null, {loginUser, createUser, addRecipesToState}) (LoginPage);
+export default connect(null, {loginUser, createUser, addRecipesToState, addFavoritesToState}) (LoginPage);

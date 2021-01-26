@@ -12,6 +12,7 @@ import {addRecipesToState} from './Actions/recipes';
 import RecipeShowContainer from './Containers/RecipeShowContainer';    
 import SearchResultsContainer from './Containers/SearchResultsContainer';
 import NoSearchResults from './Components/NoSearchResults';
+import FavoritesContainer from './Containers/FavoritesContainer';
 
 function App({user, addRecipesToState}) {
 
@@ -51,6 +52,7 @@ function App({user, addRecipesToState}) {
           <Route exact path='/recipes' component={RecipesContainer}/>
           <Route exact path='/search' component={SearchResultsContainer}/>
           <Route exact path='/no-results' component={NoSearchResults}/>
+          <Route exact path='/favorites' component={FavoritesContainer}/>
           <Route path='/recipes/:name' component={RecipeShowContainer}/>
         </div>
     </Router>

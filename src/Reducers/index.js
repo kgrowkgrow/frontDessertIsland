@@ -3,6 +3,7 @@ import user from './userReducer';
 import recipes from './recipesReducer';
 import comments from './commentsReducer';
 import search from './searchReducer'
+import favorites from './favoritesReducer'
 
 
 export default combineReducers({
@@ -10,6 +11,7 @@ export default combineReducers({
   user,
   recipes,
   comments,
-  search
+  search,
+  favorites
 });
 

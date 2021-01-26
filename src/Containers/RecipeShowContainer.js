@@ -5,8 +5,9 @@ import MealInfo from '../Components/MealInfo';
 import RecipeInstructions from "./RecipeInstructions";
 import CommentsContainer from './CommentsContainer';
 import {setInitialComments} from '../Actions/comments';
-import {Container, Row, Col} from 'react-bootstrap';
+import {Container, Row, Col, Button} from 'react-bootstrap';
 import Ingredients from '../Components/Ingredients';
+import { addNewFavorite } from '../Actions/favorites';
 
 
 const RecipeShowContainer = (props) => {
@@ -16,9 +17,10 @@ const RecipeShowContainer = (props) => {
 
     const nameFromProps = props.location.state.name
     const recipes = props.recipes
+    const favorites = props.favorites
     
     const singleRecipeArr = recipes.filter(recipe => recipe.name === nameFromProps) 
-    const {calories, image_url, instructions, name, net_carbs, ready_in_minutes, serving_size, id} = singleRecipeArr[0]
+    const {image_url, instructions, name, id} = singleRecipeArr[0]
 
     useEffect(() => {
         if (ingredients === null || comments === null) {
@@ -48,6 +50,32 @@ const RecipeShowContainer = (props) => {
         })
     }
 
+    const handleFavorite = () => {
+
+        if (!favorites.includes(singleRecipeArr[0])) {
+
+        
+        // needs to post new favorite and then update redux state with new favorite too
+        let token = localStorage.getItem('token')
+        fetch('http://localhost:3000/favorites', {
+            method: 'POST',
+            headers: {
+                'Content-Type': "application/json",
+                'Authorization' : `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                recipe_id: id 
+            })
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            console.log(data)
+            props.addNewFavorite(data)    
+        })} else {
+            return
+        }
+    }
+
     return (
         <Container className="full-height" fluid>
             <Row className="full-height">
@@ -67,7 +95,12 @@ const RecipeShowContainer = (props) => {
                 </Col>
 
                 <Col className="recipe-directions">
+                    <Row>
                     <RecipeInstructions instructions={instructions} ingredients={ingredients}/>
+                    </Row>
+                    <Row>
+                        <Button variant="primary" onClick={handleFavorite}>Add dessert to favorites</Button>
+                    </Row>
                 </Col>        
             </Row> 
             <hr/>
@@ -92,13 +125,15 @@ const RecipeShowContainer = (props) => {
 const mapStateToProps = state => {
     return {
         recipes: state.recipes,
-        comments: state.comments
+        comments: state.comments,
+        favorites: state.favorites
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        setInitialComments: (comments) => dispatch(setInitialComments(comments))
+        setInitialComments: (comments) => dispatch(setInitialComments(comments)),
+        addNewFavorite: (recipe) => dispatch(addNewFavorite(recipe))
     }
 }
 

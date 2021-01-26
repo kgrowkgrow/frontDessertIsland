@@ -31,6 +31,10 @@ const SiteNavbar = (props) => {
         }
     }
 
+    const goToFavorites = () => {
+        history.push("/favorites")
+    }
+
     return (
             <div id="nav-bar">
                  <Navbar bg="dark" variant="dark" > 
@@ -40,6 +44,7 @@ const SiteNavbar = (props) => {
                             <Nav className="navBar justify-content-start"> 
                             <Nav.Link onClick={goToHome}>Home</Nav.Link> 
                             <Nav.Link onClick={goToEdit}>Edit User</Nav.Link>
+                            <Nav.Link onClick={goToFavorites}>My Favorites</Nav.Link> 
                             <Nav.Link onClick={handleLogout}>Logout</Nav.Link> 
                             </Nav>  
                         </Col>
