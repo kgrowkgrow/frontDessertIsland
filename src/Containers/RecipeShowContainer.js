@@ -53,24 +53,21 @@ const RecipeShowContainer = (props) => {
     const handleFavorite = () => {
 
         if (!favorites.includes(singleRecipeArr[0])) {
-
-        
-        // needs to post new favorite and then update redux state with new favorite too
-        let token = localStorage.getItem('token')
-        fetch('http://localhost:3000/favorites', {
-            method: 'POST',
-            headers: {
-                'Content-Type': "application/json",
-                'Authorization' : `Bearer ${token}`
-            },
-            body: JSON.stringify({
-                recipe_id: id 
+            let token = localStorage.getItem('token')
+            fetch('http://localhost:3000/favorites', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': "application/json",
+                    'Authorization' : `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    recipe_id: id 
+                })
             })
-        })
-        .then(resp => resp.json())
-        .then(data => {
-            console.log(data)
-            props.addNewFavorite(data)    
+            .then(resp => resp.json())
+            .then(data => {
+                console.log(data)
+                props.addNewFavorite(data)    
         })} else {
             return
         }

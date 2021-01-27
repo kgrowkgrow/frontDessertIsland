@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import {connect} from 'react-redux';
 import {addNewComment} from '../Actions/comments';
 
-const CommentForm = ({recipeId, user, addNewComment}) => {
+const CommentForm = ({recipeId, addNewComment}) => {
 
     const [comment, setComment] = useState("");
 
@@ -14,6 +14,7 @@ const CommentForm = ({recipeId, user, addNewComment}) => {
     }
 
     const postComment = () => {
+        
         const token = localStorage.getItem('token')
         fetch(`http://localhost:3000/comments`, {
             method: 'POST', 
@@ -27,17 +28,21 @@ const CommentForm = ({recipeId, user, addNewComment}) => {
             })
         })
         .then(resp => resp.json())
-        .then(data => {
-            console.log(data) 
+        .then(data => { 
             addNewComment(data)
+            clearComment()
         })
+    }
+
+    const clearComment = () => {
+        setComment("")
     }
 
     return (
         <div className="full-width">
             <label><b>Post New Comment</b></label>
             <InputGroup >
-                <FormControl as="textarea" aria-label="With textarea" onChange={handleCommentChange}/>
+                <FormControl as="textarea" aria-label="With textarea" value={comment} onChange={handleCommentChange}/>
                 {/* <InputGroup.Append> 
                     <Button variant="info" onClick={postComment}>Post Comment</Button> 
                  </InputGroup.Append> */}

@@ -21,16 +21,14 @@ const RecipeCard = ({name, imageUrl, summary, id}) => {
                     <Row>
                         <Col xs={4}>
                             <span>
-                                {name}
+                                <b>{name}</b>
                             </span>
                             <br/> 
-                            <Image className="recipe-index-img" src={imageUrl} alt="" rounded fluid/>       
+                            <Image className="recipe-index-img" src={imageUrl} alt="" rounded fluid onClick={() => goToCardRecipe(id)}/>       
                         </Col>
                         <Col xs={8}>
                             <span>{parse(summary)}</span>
-                            {/* <div className='index-button-div'> */}
                                 <Button className='recipe-index-button' variant="primary" onClick={() => goToCardRecipe(id)}>See Recipe</Button> 
-                            {/* </div> */}
                         </Col>
                     </Row>
                     <hr/>

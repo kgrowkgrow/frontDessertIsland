@@ -4,7 +4,7 @@ const commentsReducer = (state = initialState, action) => {
         return [...action.comments]
 
         case 'ADD_NEW_COMMENT':
-        return [...state, action.comment]
+        return [action.comment, ...state]
          
         default:
         return state

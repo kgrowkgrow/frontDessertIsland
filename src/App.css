@@ -123,3 +123,7 @@ html, body, #app, #app>div, body>#root, body>#root>#app-container {
 .go-to-index-button {
   
 }
+
+.index-page-button-div {
+  text-align: center;
+}
