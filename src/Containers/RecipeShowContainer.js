@@ -46,6 +46,7 @@ const RecipeShowContainer = (props) => {
             if (comments === null) {
                 setComments(data.comments)
                 props.setInitialComments(data.comments)
+
             }
         })
     }
@@ -67,7 +68,8 @@ const RecipeShowContainer = (props) => {
             .then(resp => resp.json())
             .then(data => {
                 console.log(data)
-                props.addNewFavorite(data)    
+                props.addNewFavorite(data)
+                window.scrollTo(0, 0)    
         })} else {
             return
         }

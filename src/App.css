@@ -12,6 +12,8 @@
 #app-container {
   height: 100%;
   padding-top: 56px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 html, body, #app, #app>div, body>#root, body>#root>#app-container {
@@ -87,7 +89,7 @@ html, body, #app, #app>div, body>#root, body>#root>#app-container {
 }
 
 .recipe-ingredients {
-  /* background-color: lightcoral; */
+  padding-top: 30px;
 }
 
 .ingredient-directions-row {
@@ -95,15 +97,12 @@ html, body, #app, #app>div, body>#root, body>#root>#app-container {
 }
 
 .recipe-directions {
-  /* background-color: lightgreen; */
-}
-
-.comments-container {
-  
+  padding: 10px;
+  padding-top: 32px;
 }
 
 .recipe-show-column {
-  
+  padding: 25px;
 }
 
 .meal-info-div {
@@ -120,10 +119,7 @@ html, body, #app, #app>div, body>#root, body>#root>#app-container {
   top: 40%;
 }
 
-.go-to-index-button {
-  
-}
-
 .index-page-button-div {
   text-align: center;
 }
+

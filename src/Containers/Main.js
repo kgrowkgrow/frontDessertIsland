@@ -16,7 +16,7 @@ class Main extends Component {
                 <Container fluid className="main-container full-height"> 
                 <Row>
                     <Col></Col>
-                    <Col xs={6}>
+                    <Col xs={4}>
                         <Row>
                            <SearchBar/> 
                         </Row>

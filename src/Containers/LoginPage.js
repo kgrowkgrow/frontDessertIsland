@@ -130,13 +130,6 @@ class LoginPage extends Component {
             </div>
         );
     }
-
-    // mapDispatchToProps = (dispatch) => {
-    //     return {
-    //         loginUser: (user) => dispatch(loginUser(user))
-    //     }
-    // }
-
 }
 
 export default connect(null, {loginUser, createUser, addRecipesToState, addFavoritesToState}) (LoginPage);
